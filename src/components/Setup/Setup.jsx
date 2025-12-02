@@ -16,6 +16,7 @@ const Setup = () => {
               name={item.name}
               image={item.image}
               description={item.description}
+              price={item.price}
             />
           );
         })}

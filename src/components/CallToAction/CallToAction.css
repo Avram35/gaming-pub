@@ -1,0 +1,39 @@
+.call-to-action {
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 80px 10px;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+}
+.call-to-action h2 {
+  font-size: max(2vw, 24px);
+  color: #bfbfbf;
+  font-weight: 600;
+}
+.call-to-action p {
+  color: #bfbfbf;
+  font-size: 14px;
+}
+.call-to-action button {
+  margin-top: 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #00e5ff;
+  letter-spacing: 1px;
+  background-color: #0d0d0d;
+  color: #00e5ff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 12px;
+  box-shadow: 0 0 8px #00e5ff55;
+}
+.call-to-action button:hover {
+  box-shadow: 0 0 18px #00e5ffcc;
+  transform: translateY(-2px);
+}

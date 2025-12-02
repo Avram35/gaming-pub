@@ -73,6 +73,7 @@ export const setup_list = [
     image: setup_1,
     description:
       "Profesionalni gejming PC računari sa brzim monitorima, udobnim perifernim uređajima i stabilnom mrežnom vezom.",
+    price: 300,
   },
   {
     _id: "2",
@@ -80,6 +81,7 @@ export const setup_list = [
     image: setup_2,
     description:
       "PlayStation gejming zona sa velikim ekranima i udobnim sedenjem, savršena za sportske igre, trke i multiplayer zabavu.",
+    price: 500,
   },
   {
     _id: "3",
@@ -87,5 +89,6 @@ export const setup_list = [
     image: setup_3,
     description:
       "Realistična moto sim-racing stolica sa upravljačima i pedalama, dizajnirana da pruži potpuno uranjajuće iskustvo vožnje.",
+    price: 800,
   },
 ];

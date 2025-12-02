@@ -49,7 +49,7 @@ const Navbar = () => {
         </li>
         <li>
           <Link
-            to="/"
+            to="/about"
             onClick={() => setMenu("onama")}
             className={menu === "onama" ? "active" : ""}
           >
