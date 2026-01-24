@@ -15,7 +15,6 @@
   max-width: 50%;
   bottom: 10%;
   left: 6vw;
-  animation: fadeIn 3s;
 }
 .header-contents h2 {
   font-weight: 500;
@@ -24,7 +23,7 @@
 }
 .header-contents p {
   color: #bfbfbf;
-  font-size: 1vw;
+  font-size: max(1vw, 12px);
 }
 .header-contents button {
   border: none;
@@ -41,4 +40,41 @@
 .header-contents button:hover {
   color: #00e5ff;
   background-color: black;
+}
+@media (max-width: 1024px) {
+  .header-contents h2 {
+    font-size: max(4.5vw, 22px);
+  }
+  .header-contents button {
+    font-size: max(1vw, 11px);
+    letter-spacing: 1.5px;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    height: 40vw;
+  }
+  .header-contents p {
+    color: #bfbfbf;
+    font-size: max(1vw, 10px);
+  }
+
+  .header-contents button {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    height: 60vw;
+  }
+  .header-contents p {
+    color: #bfbfbf;
+    font-size: max(1vw, 10px);
+  }
+
+  .header-contents button {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
 }

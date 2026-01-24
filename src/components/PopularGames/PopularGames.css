@@ -13,3 +13,10 @@
   gap: 30px;
   row-gap: 50px;
 }
+@media (max-width: 1024px) {
+  .games-display-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    row-gap: 40px;
+  }
+}

@@ -34,3 +34,21 @@
 .choose-us-item p {
   font-size: 12px;
 }
+@media (max-width: 1024px) {
+  .choose-us-item {
+    padding: 50px 40px;
+  }
+}
+@media (max-width: 768px) {
+  .choose-us-item {
+    padding: 30px 20px;
+    gap: 8px;
+  }
+  .choose-us-item b {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .choose-us-item p {
+    font-size: 11px;
+  }
+}

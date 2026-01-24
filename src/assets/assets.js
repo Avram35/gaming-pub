@@ -15,6 +15,8 @@ import setup_3 from "./setup_3.jpg";
 import hide from "./hide.png";
 import show from "./eye.png";
 import arrow from "./chevron.png";
+import more from "./more.png";
+import close from "./close.png";
 
 export const assets = {
   person,
@@ -25,6 +27,8 @@ export const assets = {
   hide,
   show,
   arrow,
+  more,
+  close,
 };
 
 export const game_list = [
@@ -47,7 +51,7 @@ export const game_list = [
     name: "Valorant",
     image: game_3,
     description:
-      "Precizan taktički shooter koji spaja CS stil pucanja sa jedinstvenim moćima agenata.",
+      "Precizan taktički shooter koji spaja CS stil pucanja sa jedinstvenim moćima.",
   },
   {
     _id: "4",
@@ -68,7 +72,7 @@ export const game_list = [
     name: "League of Legends",
     image: game_6,
     description:
-      "Najpoznatija igra gde strategija, timski rad i pravi izbor heroja odlučuju ishod borbe.",
+      "Najpoznatija igra gde strategija i pravi izbor heroja odlučuju ishod borbe.",
   },
 ];
 

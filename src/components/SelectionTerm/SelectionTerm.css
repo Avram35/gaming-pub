@@ -102,3 +102,8 @@
 .term-item:hover .term-item-price-amount {
   transform: scale(1.1);
 }
+@media (max-width: 768px) {
+  .terms {
+    width: 100%;
+  }
+}

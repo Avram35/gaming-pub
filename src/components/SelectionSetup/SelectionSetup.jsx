@@ -9,7 +9,7 @@ const SelectionSetup = () => {
   const [step, setStep] = useState(1);
   const [setupId, setSetupId] = useState(null);
   return (
-    <>
+    <div className="selection-setup">
       {step == 1 && (
         <div>
           <h1 className="selection-setup-title">Odaberi svoj setup</h1>
@@ -27,7 +27,7 @@ const SelectionSetup = () => {
       )}
       {step == 2 && <SelectionTerm setupId={setupId} setStep={setStep} />}
       {step == 3 && <SelectionDate />}
-    </>
+    </div>
   );
 };
 
