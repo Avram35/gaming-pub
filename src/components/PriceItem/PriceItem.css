@@ -40,3 +40,55 @@
   box-shadow: 0 0 18px #00e5ffcc;
   transform: translateY(-2px);
 }
+@media (max-width: 1024px) {
+  .base-price {
+    margin-bottom: 5px;
+  }
+  .price-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 2px;
+  }
+  .price-card h2 {
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .price-card h2 {
+    font-size: 28px;
+  }
+  .base-price {
+    font-size: 20px;
+  }
+  .price-card h3 {
+    font-size: 22px;
+  }
+  .price-card ul li {
+    font-size: 18px;
+  }
+  .price-card button {
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .price-card h2 {
+    font-size: 32px;
+  }
+  .base-price {
+    font-size: 22px;
+  }
+  .price-card h3 {
+    font-size: 24px;
+  }
+  .price-card ul li {
+    font-size: 20px;
+  }
+  .price-card button {
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 30px;
+  }
+}

@@ -13,6 +13,8 @@
   border-radius: 12px;
   width: 100%;
   max-width: 350px;
+  display: flex;
+  flex-direction: column;
   /*border: 1px solid #00e5ff;*/
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
 }
@@ -24,4 +26,23 @@
 }
 .time:last-child {
   margin-bottom: 0;
+}
+@media (max-width: 768px) {
+  .worktime-container {
+    max-width: 80%;
+    gap: 10px;
+  }
+
+  .time span {
+    font-size: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .worktime-container {
+    max-width: 80%;
+    gap: 5px;
+  }
+  .time span {
+    font-size: 22px;
+  }
 }

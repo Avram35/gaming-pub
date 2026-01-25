@@ -20,3 +20,10 @@
     row-gap: 40px;
   }
 }
+@media (max-width: 768px) {
+  .games-display-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1000px;
+    row-gap: 40px;
+  }
+}

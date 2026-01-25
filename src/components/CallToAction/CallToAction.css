@@ -37,3 +37,28 @@
   box-shadow: 0 0 18px #00e5ffcc;
   transform: translateY(-2px);
 }
+@media (max-width: 768px) {
+  .call-to-action h2 {
+    font-size: 32px;
+  }
+  .call-to-action {
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .call-to-action button {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .call-to-action h2 {
+    font-size: 36px;
+  }
+  .call-to-action p {
+    font-size: 18px;
+  }
+  .call-to-action button {
+    font-size: 16px;
+    padding: 15px 30px;
+    border-radius: 30px;
+  }
+}

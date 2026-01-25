@@ -7,8 +7,8 @@ const SetupItem = ({ id, name, image, description, price }) => {
   return (
     <div className="setup-item" style={{ backgroundImage: `url(${image})` }}>
       <div className="setup-item-containter">
-        <p className="setup-name">{name}</p>
-        <p className="setup-description">{description}</p>
+        <p className="setup-item-name">{name}</p>
+        <p className="setup-item-description">{description}</p>
         <div className="setup-price">{price} RSD / sat</div>
         <button
           className="setup-btn"

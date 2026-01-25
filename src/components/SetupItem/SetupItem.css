@@ -28,12 +28,12 @@
   box-shadow: 0 0 18px #00e5ffcc;
   transform: translateY(-2px);
 }
-.setup-name {
+.setup-item-name {
   font-size: 20px;
   font-weight: 500;
 }
 
-.setup-description {
+.setup-item-description {
   font-size: 12px;
 }
 .setup-item-containter {
@@ -49,4 +49,14 @@
   font-size: 16px;
   font-weight: 600;
   text-shadow: 0 0 8px #00e5ff55;
+}
+@media (max-width: 768px) {
+  .setup-item-name {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .setup-item-description {
+    font-size: 16px;
+  }
 }

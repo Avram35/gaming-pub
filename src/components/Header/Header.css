@@ -52,29 +52,49 @@
 }
 @media (max-width: 768px) {
   .header {
-    height: 40vw;
+    height: 50vh;
   }
   .header-contents p {
     color: #bfbfbf;
-    font-size: max(1vw, 10px);
+    font-size: 14px;
   }
-
+  .header-contents h2 {
+    font-weight: 500;
+    color: #bfbfbf;
+    font-size: 40px;
+  }
+  .header-contents {
+    max-width: 80%;
+    gap: 10px;
+    bottom: 10%;
+  }
   .header-contents button {
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: 1.5px;
+    padding: 10px 20px;
   }
 }
 @media (max-width: 480px) {
   .header {
-    height: 60vw;
+    height: 50vh;
+  }
+  .header-contents {
+    max-width: 80%;
+    gap: 10px;
+    bottom: 10%;
   }
   .header-contents p {
     color: #bfbfbf;
-    font-size: max(1vw, 10px);
+    font-size: 14px;
   }
-
+  .header-contents h2 {
+    font-weight: 500;
+    color: #bfbfbf;
+    font-size: 40px;
+  }
   .header-contents button {
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: 1.5px;
+    padding: 10px 20px;
   }
 }
