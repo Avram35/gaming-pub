@@ -2,10 +2,11 @@ import React from "react";
 import "./PriceItem.css";
 import { useNavigate } from "react-router-dom";
 
-const PriceItem = ({ name, basePrice, promotions }) => {
+const PriceItem = ({ name, basePrice, promotions, image }) => {
   const navigate = useNavigate();
   return (
     <div className="price-card">
+      {image && <img src={image} alt={name} className="price-card-image" />}
       <h2>{name}</h2>
       <p className="base-price">
         Standardna cena: <span>{basePrice} RSD / sat</span>

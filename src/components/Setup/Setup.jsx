@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Setup.css";
-import { setup_list } from "../../assets/assets";
 import SetupItem from "../SetupItem/SetupItem";
 
 const Setup = ({ setMenu }) => {
+  const [setups, setSetups] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchSetups = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/setups');
+        const data = await response.json();
+        setSetups(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchSetups();
+  }, []);
+
+  if (loading) return <div>Loading setups...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className="setup-display">
       <h2>Naša oprema</h2>
       <div className="setup-display-list">
-        {setup_list.map((item, index) => {
+        {setups.map((item, index) => {
           return (
             <SetupItem
               key={index}
-              id={item._id}
+              id={item.id}
               name={item.name}
               image={item.image}
               description={item.description}
-              price={item.price}
+              price={item.basePrice}
             />
           );
         })}

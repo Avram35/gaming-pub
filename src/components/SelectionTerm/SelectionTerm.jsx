@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SelectionTerm.css";
-import { setup_list } from "../../assets/assets";
 
 const SelectionTerm = ({ setupId, setStep }) => {
-  const setupInfo = setup_list.find((setup) => setup._id === setupId);
+  const [setupInfo, setSetupInfo] = useState(null);
   const [check, setCheck] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSetups = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/setups');
+        const data = await response.json();
+        const setup = data.find(s => s.id === setupId);
+        setSetupInfo(setup);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching setup:', err);
+        setLoading(false);
+      }
+    };
+
+    if (setupId) {
+      fetchSetups();
+    }
+  }, [setupId]);
 
   const terms = [
     { label: "1 sat", hours: 1 },
@@ -14,7 +33,9 @@ const SelectionTerm = ({ setupId, setStep }) => {
     { label: "ceo dan", hours: 8 },
   ];
 
+  if (loading) return <div>Loading...</div>;
   if (!setupInfo) return null;
+
   return (
     <div className="selection-term">
       <img src={setupInfo.image} alt="" className="term-setup-image" />
@@ -31,7 +52,7 @@ const SelectionTerm = ({ setupId, setStep }) => {
             <div className="term-item-price">
               <span className="term-item-price-label">{term.label}</span>{" "}
               <span className="term-item-price-amount">
-                {setupInfo.price * term.hours} rsd
+                {setupInfo.basePrice * term.hours} rsd
               </span>
             </div>
             <div className="check">

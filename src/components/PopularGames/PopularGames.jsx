@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PopularGames.css";
-import { game_list } from "../../assets/assets";
 import GameItem from "../GameItem/GameItem";
 
 const PopularGames = () => {
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/games');
+        const data = await response.json();
+        setGames(data.slice(0, 6));
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchGames();
+  }, []);
+
+  if (loading) return <div>Loading games...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className="games-display">
       <h2>Popularne igre</h2>
       <div className="games-display-list">
-        {game_list.slice(0, 6).map((item, index) => {
+        {games.map((item, index) => {
           return (
             <GameItem
               key={index}
-              id={item._id}
+              id={item.game_id}
               name={item.name}
               image={item.image}
               description={item.description}
