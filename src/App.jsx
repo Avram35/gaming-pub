@@ -13,13 +13,12 @@ import Login from "./components/Login/Login.jsx";
 const App = () => {
   const [menu, setMenu] = useState("pocetna");
   const [loginShow, setLoginShow] = useState(false);
+
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
   });
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+
   return (
     <>
       <div className="app">

@@ -210,7 +210,7 @@ const Login = ({ setLoginShow, loginShow, setUser }) => {
               <input
                 type="mail"
                 name="mail"
-                placeholder="mail"
+                placeholder="Email"
                 value={formData.mail}
                 onChange={handleChange}
                 disabled={loading}
