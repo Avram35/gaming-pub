@@ -531,6 +531,99 @@ app.delete("/reservations/:reservationId", async(req, res) => {
     }
 });
 
+// Get Available Time Slots
+app.post("/available-slots", async(req, res) => {
+    try {
+        const { device_type, reservation_date, duration_hours } = req.body;
+
+        const validDeviceTypes = ["pc", "sony", "moto"];
+        if (!validDeviceTypes.includes(device_type)) {
+            return res.status(400).json({ error: "Invalid device type" });
+        }
+
+        if (!reservation_date || !duration_hours) {
+            return res.status(400).json({ error: "reservation_date and duration_hours are required" });
+        }
+
+        const durationInt = parseInt(duration_hours);
+        if (isNaN(durationInt) || durationInt < 1) {
+            return res.status(400).json({ error: "duration_hours must be a valid number" });
+        }
+
+        const date = new Date(reservation_date);
+        if (isNaN(date.getTime())) {
+            return res.status(400).json({ error: "reservation_date must be a valid date (YYYY-MM-DD)" });
+        }
+
+        const dayOfWeek = date.getDay();
+
+        // Radno vreme na osnovu dana
+        let workingHours = { start: 12, end: 22 }; // Ponedeljak-Petak
+        if (dayOfWeek === 6) { // Subota
+            workingHours = { start: 10, end: 23 };
+        }
+        if (dayOfWeek === 0) { // Nedelja
+            return res.status(400).json({ error: "Ne radimo nedeljom" });
+        }
+        // Pronađi sve uređaje tog tipa
+        const tableName = device_type.toLowerCase();
+        let allDevices;
+        try {
+            allDevices = await pool.query(`SELECT * FROM ${tableName}`);
+        } catch (tableErr) {
+            console.error(`Error querying ${tableName}:`, tableErr.message);
+            return res.status(400).json({ error: `Tabela za ${device_type} ne postoji` });
+        }
+
+        const totalDevices = allDevices.rows.length;
+
+        const availableSlots = [];
+
+        // Za svaki sat radnog vremena
+        for (let hour = workingHours.start; hour < workingHours.end; hour++) {
+            const startTime = `${String(hour).padStart(2, "0")}:00:00`;
+            const endHour = hour + durationInt;
+
+            // Provera da li termin zadovoljava radno vreme
+            if (endHour > workingHours.end) {
+                break;
+            }
+
+            // Pronađi rezervisane uređaje u tom terminu
+            const reservedDevices = await pool.query(
+                `SELECT device_id FROM reservations
+                WHERE device_type = $1
+                AND reservation_date = $2
+                AND status = 'active'
+                AND (
+                    (start_time, start_time + ($4::INTEGER || ' hours')::INTERVAL) 
+                    OVERLAPS 
+                    ($3::TIME, $3::TIME + ($4::INTEGER || ' hours')::INTERVAL)
+                )`, [device_type, reservation_date, startTime, durationInt],
+            );
+
+            const reservedIds = new Set(reservedDevices.rows.map((r) => r.device_id));
+
+            // Izračunaj raspoložive uređaje (ukupno - rezervisano)
+            const availableCount = Math.max(0, totalDevices - reservedIds.size);
+
+            if (availableCount > 0) {
+                availableSlots.push({
+                    start_time: startTime,
+                    end_time: `${String(endHour).padStart(2, "0")}:00:00`,
+                    available_devices: availableCount,
+                    total_devices: totalDevices,
+                });
+            }
+        }
+
+        res.json(availableSlots);
+    } catch (err) {
+        console.error("Error in /available-slots:", err.message);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server is running on ${BASE_URL}`);
 });
